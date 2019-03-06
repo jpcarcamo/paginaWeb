@@ -42,7 +42,7 @@ El presente archido debe llamarse index y debe tener la extensión php
 				);
 				setTimeout(function(){
 					window.location.reload();
-				},500);
+				},700);
 			});
 		});
 	</script>
