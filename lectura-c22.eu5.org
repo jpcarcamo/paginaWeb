@@ -19,9 +19,9 @@ El presente archido debe llamarse index y debe tener la extensión php
 		<br/>
 		
 		<form action = "" method = "POST">
-			Elemento: <input type = "text" name = "elemento" id = "elemento"><br/>
+			Elemento:<input type = "text" name = "elemento" id = "elemento"><br/>
 			<br/>
-			Argumento: <input type = "text" name = "argumento" id = "argumento"><br/>
+			Argumento:<input type = "text" name = "argumento" id = "argumento"><br/>
 			<br/>
 			<button id = "btnclose">Enviar!!</button><br/>
 		</form>
@@ -30,31 +30,18 @@ El presente archido debe llamarse index y debe tener la extensión php
 		
 		<b>Ultima orden:</b><br/>
 		
+		<div id = "thisdiv">
 		=>> <?php include "acciones.html"; ?><br/>
+		</div>
 
 	</body>
 
 	<script>
-		$(document).ready(function(){
-			$('#btnclose').click(function(){
-				$.post("", 
-					{elemento: $('#elemento').val(), argumento: $('#argumento').val()},
-				);
-				setTimeout(function(){
-					window.location.reload();
-				},700);
-			});
+		$('#thisdiv').ready(function(){
+			setInterval(function(){
+			$('#thisdiv').load(document.URL +  ' #thisdiv');
+		}, 100);
 		});
 	</script>
 	
 </html>
-
-<?php
-	if($_POST){
-	 $elemento = $_POST['elemento'];
-	 $argumento = $_POST['argumento'];
-	 $handle = fopen("acciones.html","w");
-	 fwrite($handle,"<b>".$elemento."</b>: ".$argumento."<br/>");
-	 fclose($handle);
-	}
-?>
