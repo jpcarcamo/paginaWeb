@@ -1,0 +1,60 @@
+# paginaWeb
+Página web que guarda permanentemente lo que se escribe en un archivo adjunto de extensión html llamado "acciones"
+El presente archido debe llamarse index y debe tener la extensión php
+
+
+<html>
+
+	<head>
+
+		<title></title>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+		</script>
+
+	</head>
+
+	<body>
+	
+		<br/>
+		
+		<form action = "" method = "POST">
+			Elemento: <input type = "text" name = "elemento" id = "elemento"><br/>
+			<br/>
+			Argumento: <input type = "text" name = "argumento" id = "argumento"><br/>
+			<br/>
+			<button id = "btnclose">Enviar!!</button><br/>
+		</form>
+		
+		<br/><br/>
+		
+		<b>Ultima orden:</b><br/>
+		
+		=>> <?php include "acciones.html"; ?><br/>
+
+	</body>
+
+	<script>
+		$(document).ready(function(){
+			$('#btnclose').click(function(){
+				$.post("", 
+					{elemento: $('#elemento').val(), argumento: $('#argumento').val()},
+				);
+				setTimeout(function(){
+					window.location.reload();
+				},500);
+			});
+		});
+	</script>
+	
+</html>
+
+<?php
+	if($_POST){
+	 $elemento = $_POST['elemento'];
+	 $argumento = $_POST['argumento'];
+	 $handle = fopen("acciones.html","w");
+	 fwrite($handle,"<b>".$elemento."</b>: ".$argumento."<br/>");
+	 fclose($handle);
+	}
+?>
